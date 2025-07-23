@@ -1,0 +1,102 @@
+/*5. Control Statements
+Problem:
+Develop a menu-driven program using:
+
+Selection (if-else, switch)
+
+Iteration (for, while, do-while)
+*/
+
+import java.util.Scanner;
+
+public class ControlStatementsDemo {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n===== MENU =====");
+            System.out.println("1. Check Even or Odd (if-else)");
+            System.out.println("2. Grade Evaluation (switch)");
+            System.out.println("3. Print N Numbers (for loop)");
+            System.out.println("4. Sum Till N (while loop)");
+            System.out.println("5. Multiplication Table (do-while loop)");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
+            choice = in.nextInt();
+
+            switch (choice) {
+                case 1: // if-else
+                    System.out.print("Enter a number: ");
+                    int num = in.nextInt();
+                    if (num % 2 == 0) {
+                        System.out.println(num + " is Even.");
+                    } else {
+                        System.out.println(num + " is Odd.");
+                    }
+                    break;
+
+                case 2: // switch
+                    System.out.print("Enter marks (0–100): ");
+                    int marks = in.nextInt();
+                    switch (marks / 10) {
+                        case 10:
+                        case 9:
+                            System.out.println("Grade: A");
+                            break;
+                        case 8:
+                            System.out.println("Grade: B");
+                            break;
+                        case 7:
+                            System.out.println("Grade: C");
+                            break;
+                        case 6:
+                            System.out.println("Grade: D");
+                            break;
+                        default:
+                            System.out.println("Grade: F");
+                    }
+                    break;
+
+                case 3: // for loop
+                    System.out.print("Enter N: ");
+                    int n = in.nextInt();
+                    System.out.println("First " + n + " numbers:");
+                    for (int i = 1; i <= n; i++) {
+                        System.out.print(i + " ");
+                    }
+                    System.out.println();
+                    break;
+
+                case 4: // while loop
+                    System.out.print("Enter N: ");
+                    int limit = in.nextInt();
+                    int i = 1, sum = 0;
+                    while (i <= limit) {
+                        sum += i;
+                        i++;
+                    }
+                    System.out.println("Sum from 1 to " + limit + " is: " + sum);
+                    break;
+
+                case 5: // do-while loop
+                    System.out.print("Enter a number: ");
+                    int table = in.nextInt();
+                    int j = 1;
+                    do {
+                        System.out.println(table + " x " + j + " = " + (table * j));
+                        j++;
+                    } while (j <= 10);
+                    break;
+
+                case 6:
+                    System.out.println("Exiting the program...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+
+        } while (choice != 6);
+    }
+}
