@@ -1,0 +1,32 @@
+/*3. Data Types
+Problem:
+Create a Java class that declares one variable of each primitive data type (byte, short, int, long, float, double, char, boolean). Assign appropriate values, then print them all in a formatted table.
+
+*/
+public class Main {
+    public static void main(String[] args) {
+        // Declare and assign all primitive data types
+        byte b = 100;
+        short s = 32000;
+        int i = 123456;
+        long l = 1234567890L;
+        float f = 12.34f;
+        double d = 12345.6789;
+        char c = 'A';
+        boolean bool = true;
+
+        // Print as formatted table
+        System.out.println("+----------------+----------------------+");
+        System.out.println("| CCE22039-Data Type      | Value                |");
+        System.out.println("+----------------+----------------------+");
+        System.out.printf("| byte           | %-20d |\n", b);
+        System.out.printf("| short          | %-20d |\n", s);
+        System.out.printf("| int            | %-20d |\n", i);
+        System.out.printf("| long           | %-20d |\n", l);
+        System.out.printf("| float          | %-20.2f |\n", f);
+        System.out.printf("| double         | %-20.4f |\n", d);
+        System.out.printf("| char           | %-20c |\n", c);
+        System.out.printf("| boolean        | %-20b |\n", bool);
+        System.out.println("+----------------+----------------------+");
+    }
+}
