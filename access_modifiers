@@ -1,0 +1,58 @@
+/*4. Access Modifiers
+Problem:
+Create a class with members (variables and methods) having all 4 access modifiers (public, private, protected, default). Try to access them from another class in the same package and explain what works and what doesn’t.*/
+
+public class AccessModifiersExample {
+    // Public member
+    public String publicName = "Deshana";
+
+    // Private member
+    private int privateAge = 21;
+
+    // Protected member
+    protected String protectedCity = "Mumbai";
+
+    // Default (package-private) member
+    String defaultCountry = "India";
+
+    // Public method
+    public void showPublic() {
+        System.out.println("Public Method: Hello from " + publicName);
+    }
+
+    // Private method
+    private void showPrivate() {
+        System.out.println("Private Method: Age is " + privateAge);
+    }
+
+    // Protected method
+    protected void showProtected() {
+        System.out.println("Protected Method: City is " + protectedCity);
+    }
+
+    // Default method
+    void showDefault() {
+        System.out.println("Default Method: Country is " + defaultCountry);
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        AccessModifiersExample obj = new AccessModifiersExample();
+
+        // Accessing public
+        System.out.println("Accessing Public Variable: " + obj.publicName);
+        obj.showPublic();
+
+        // Accessing private
+        System.out.println("Accessing Private Variable within same class: " + obj.privateAge);
+        obj.showPrivate(); // allowed here
+
+        // Accessing protected
+        System.out.println("Accessing Protected Variable: " + obj.protectedCity);
+        obj.showProtected();
+
+        // Accessing default
+        System.out.println("Accessing Default Variable: " + obj.defaultCountry);
+        obj.showDefault();
+    }
+}
