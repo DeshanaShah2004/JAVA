@@ -1,0 +1,29 @@
+/*1. Input / Output Statement using Scanner
+Problem:
+Create a Java program that takes a user's name, age, and city as input using the Scanner class, and prints a greeting message:
+
+"Hello <name>, you are <age> years old and live in <city>."*/
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in); // Create Scanner object
+
+        // Input name
+        System.out.print("Enter your name: ");
+        String name = in.nextLine();
+
+        // Input age
+        System.out.print("Enter your age: ");
+        int age = in.nextInt();
+        in.nextLine();  // Consume the leftover newline character
+
+        // Input city
+        System.out.print("Enter your city: ");
+        String city = in.nextLine();
+
+        // Output greeting
+        System.out.println("Hello " + name + ", you are " + age + " years old and live in " + city + ".");
+    }
+}
