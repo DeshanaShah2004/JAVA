@@ -1,0 +1,39 @@
+/*2. Data Operations
+Problem:
+Write a program that takes two integers and one float from the user and performs all arithmetic operations (addition, subtraction, multiplication, division, modulus) on them. Print the results in a formatted way.*/
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        // Input two integers
+        System.out.print("Enter first integer: ");
+        int num1 = in.nextInt();
+
+        System.out.print("Enter second integer: ");
+        int num2 = in.nextInt();
+
+        // Input one float
+        System.out.print("Enter a float value: ");
+        float f = in.nextFloat();
+
+        // Perform operations
+        System.out.println("\n--- Arithmetic Operations ---");
+        System.out.println("Addition (int): " + (num1 + num2));
+        System.out.println("Subtraction (int): " + (num1 - num2));
+        System.out.println("Multiplication (int): " + (num1 * num2));
+
+        // Check for divide by zero
+        if (num2 != 0) {
+            System.out.println("Division (int): " + (num1 / num2));
+            System.out.println("Modulus (int): " + (num1 % num2));
+        } else {
+            System.out.println("Division and Modulus not possible (divisor is 0)");
+        }
+
+        System.out.println("Float multiplied by first int: " + (f * num1));
+        System.out.println("Float divided by second int: " + (num2 != 0 ? (f / num2) : "Cannot divide by zero"));
+    }
+}
