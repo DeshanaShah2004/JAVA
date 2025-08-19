@@ -1,0 +1,153 @@
+/*
+Problem:
+
+Create a Bank System with multiple account types.
+
+Base class: Account
+
+Properties: accountNumber (int), name (String), balance (double)
+
+Methods:
+
+deposit(double amount) → adds to balance
+
+withdraw(double amount) → subtracts from balance if sufficient
+
+display() → shows account details
+
+calculateInterest() → abstract, overridden in derived classes
+
+Derived class 1: SavingsAccount
+
+Has interest rate 5%
+
+Overrides calculateInterest() → balance * 0.05
+
+Derived class 2: CurrentAccount
+
+No interest
+
+Overrides calculateInterest() → 0
+
+Program should:
+
+Ask user N accounts
+
+Ask for account type, name, number, initial balance
+
+Perform deposit, withdraw, and calculate interest
+
+Display all accounts with final balance
+*/
+
+import java.util.Scanner;
+
+// Base class
+abstract class Account {
+    int accountNumber;
+    String name;
+    double balance;
+
+    Account(int accNo, String name, double balance) {
+        this.accountNumber = accNo;
+        this.name = name;
+        this.balance = balance;
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    void withdraw(double amount) {
+        if(amount <= balance) {
+            balance -= amount;
+        } else {
+            System.out.println("Insufficient balance!");
+        }
+    }
+
+    abstract double calculateInterest();
+
+    void display() {
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Name: " + name);
+        System.out.println("Balance: " + balance);
+        System.out.println("Interest: " + calculateInterest());
+        System.out.println("--------------------------");
+    }
+}
+
+// Derived class SavingsAccount
+class SavingsAccount extends Account {
+    SavingsAccount(int accNo, String name, double balance) {
+        super(accNo, name, balance);
+    }
+
+    @Override
+    double calculateInterest() {
+        return balance * 0.05;
+    }
+}
+
+// Derived class CurrentAccount
+class CurrentAccount extends Account {
+    CurrentAccount(int accNo, String name, double balance) {
+        super(accNo, name, balance);
+    }
+
+    @Override
+    double calculateInterest() {
+        return 0;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of accounts: ");
+        int n = sc.nextInt();
+
+        Account[] accounts = new Account[n];
+
+        for(int i=0; i<n; i++) {
+            System.out.println("\nAccount " + (i+1));
+            System.out.print("Enter account type (1: Savings, 2: Current): ");
+            int type = sc.nextInt();
+            sc.nextLine(); // consume newline
+
+            System.out.print("Enter name: ");
+            String name = sc.nextLine();
+            System.out.print("Enter account number: ");
+            int accNo = sc.nextInt();
+            System.out.print("Enter initial balance: ");
+            double balance = sc.nextDouble();
+
+            if(type == 1) {
+                accounts[i] = new SavingsAccount(accNo, name, balance);
+            } else if(type == 2) {
+                accounts[i] = new CurrentAccount(accNo, name, balance);
+            } else {
+                System.out.println("Invalid type, try again.");
+                i--;
+                continue;
+            }
+
+            System.out.print("Deposit amount: ");
+            double deposit = sc.nextDouble();
+            accounts[i].deposit(deposit);
+
+            System.out.print("Withdraw amount: ");
+            double withdraw = sc.nextDouble();
+            accounts[i].withdraw(withdraw);
+        }
+
+        System.out.println("\n--- Account Details ---");
+        for(Account acc : accounts) {
+            acc.display();
+        }
+
+        sc.close();
+    }
+}
+
