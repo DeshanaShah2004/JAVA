@@ -1,0 +1,99 @@
+/*Problem:
+
+You have a base class Shape and two derived classes Circle and Rectangle.
+
+Shape has:
+
+Method area() that returns double.
+
+This method should be overridden in derived classes.
+
+Circle:
+
+Takes radius from user.
+
+Overrides area() to calculate π × r².
+
+Rectangle:
+
+Takes length and width from user.
+
+Overrides area() to calculate length × width.
+
+Program should accept N shapes from user, choose type (Circle/Rectangle) and dimensions, and print the area using polymorphism.
+*/
+
+import java.util.Scanner;
+
+// Base class
+abstract class Shape {
+    abstract double area();
+}
+
+// Derived class Circle
+class Circle extends Shape {
+    double radius;
+
+    Circle(double r) {
+        this.radius = r;
+    }
+
+    @Override
+    double area() {
+        return Math.PI * radius * radius;
+    }
+}
+
+// Derived class Rectangle
+class Rectangle extends Shape {
+    double length, width;
+
+    Rectangle(double l, double w) {
+        this.length = l;
+        this.width = w;
+    }
+
+    @Override
+    double area() {
+        return length * width;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of shapes: ");
+        int n = sc.nextInt();
+
+        Shape[] shapes = new Shape[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nShape " + (i+1));
+            System.out.print("Enter type (1 for Circle, 2 for Rectangle): ");
+            int type = sc.nextInt();
+
+            if (type == 1) {
+                System.out.print("Enter radius: ");
+                double r = sc.nextDouble();
+                shapes[i] = new Circle(r);
+            } else if (type == 2) {
+                System.out.print("Enter length: ");
+                double l = sc.nextDouble();
+                System.out.print("Enter width: ");
+                double w = sc.nextDouble();
+                shapes[i] = new Rectangle(l, w);
+            } else {
+                System.out.println("Invalid type, skipping...");
+                i--; // repeat this iteration
+            }
+        }
+
+        System.out.println("\nAreas of Shapes:");
+        for (int i = 0; i < n; i++) {
+            System.out.println("Shape " + (i+1) + " area: " + shapes[i].area());
+        }
+
+        sc.close();
+    }
+}
