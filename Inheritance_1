@@ -1,0 +1,54 @@
+/*1. Inheritance – Medium
+
+Question:
+Create a Java program where you have a base class Vehicle with properties brand and speed.
+
+The class should have a method displayInfo() that prints brand and speed.
+
+Derive a class Car that adds a property seats and overrides the displayInfo() method to also print the number of seats.
+
+Write a main method to create a Car object and display its details.*/
+
+// Base class
+class Vehicle {
+    String brand;
+    int speed;
+
+    // Constructor
+    Vehicle(String brand, int speed) {
+        this.brand = brand;
+        this.speed = speed;
+    }
+
+    // Method to display vehicle information
+    void displayInfo() {
+        System.out.println("Brand: " + brand);
+        System.out.println("Speed: " + speed + " km/h");
+    }
+}
+
+// Derived class
+class Car extends Vehicle {
+    int seats;
+
+    // Constructor
+    Car(String brand, int speed, int seats) {
+        super(brand, speed); // call parent constructor
+        this.seats = seats;
+    }
+
+    // Overriding displayInfo()
+    @Override
+    void displayInfo() {
+        super.displayInfo(); // call parent method
+        System.out.println("Seats: " + seats);
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        Car myCar = new Car("Toyota", 180, 5);
+        myCar.displayInfo();
+    }
+}
