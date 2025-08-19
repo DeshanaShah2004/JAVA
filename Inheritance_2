@@ -1,0 +1,78 @@
+/*Create a base class Person and a derived class Student.
+
+Person should have:
+
+name (String)
+
+age (int)
+
+A method display() to print Name and Age.
+
+Student should inherit Person and add:
+
+rollNumber (int)
+
+marks (float)
+
+Override display() to also print Roll Number and Marks.
+
+Use user input to create a Student object and display all details.
+*/
+
+import java.util.Scanner;
+
+// Base class
+class Person {
+    String name;
+    int age;
+
+    void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+// Derived class
+class Student extends Person {
+    int rollNumber;
+    float marks;
+
+    @Override
+    void display() {
+        super.display();
+        System.out.println("Roll Number: " + rollNumber);
+        System.out.println("Marks: " + marks);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter age: ");
+        int age = sc.nextInt();
+
+        System.out.print("Enter roll number: ");
+        int roll = sc.nextInt();
+
+        System.out.print("Enter marks: ");
+        float marks = sc.nextFloat();
+
+        // Create Student object
+        Student s = new Student();
+        s.name = name;
+        s.age = age;
+        s.rollNumber = roll;
+        s.marks = marks;
+
+        // Display details
+        System.out.println("\nStudent Details:");
+        s.display();
+
+        sc.close();
+    }
+}
