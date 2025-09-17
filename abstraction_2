@@ -1,0 +1,104 @@
+/*
+Question:
+Create an abstract class Shape with the following:
+An abstract method double calculateArea().
+An abstract method double calculatePerimeter().
+Then implement three classes:
+Circle (takes radius as input)
+Rectangle (takes length and width as input)
+Triangle (takes 3 sides as input and calculates area using Heron’s formula)
+Task:
+Write the Java program to:
+Store multiple shapes in an array (or ArrayList).
+Iterate over them and print each shape’s area and perimeter.
+*/
+
+import java.util.*;
+
+// Abstract class
+abstract class Shape {
+    public abstract double calculateArea();
+    public abstract double calculatePerimeter();
+}
+
+// Circle class
+class Circle extends Shape {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+
+    @Override
+    public double calculatePerimeter() {
+        return 2 * Math.PI * radius;
+    }
+}
+
+// Rectangle class
+class Rectangle extends Shape {
+    private double length;
+    private double width;
+
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    public double calculateArea() {
+        return length * width;
+    }
+
+    @Override
+    public double calculatePerimeter() {
+        return 2 * (length + width);
+    }
+}
+
+// Triangle class (Heron's formula)
+class Triangle extends Shape {
+    private double sideA;
+    private double sideB;
+    private double sideC;
+
+    public Triangle(double sideA, double sideB, double sideC) {
+        this.sideA = sideA;
+        this.sideB = sideB;
+        this.sideC = sideC;
+    }
+
+    @Override
+    public double calculateArea() {
+        double s = (sideA + sideB + sideC) / 2.0; // semi-perimeter
+        return Math.sqrt(s * (s - sideA) * (s - sideB) * (s - sideC));
+    }
+
+    @Override
+    public double calculatePerimeter() {
+        return sideA + sideB + sideC;
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Shape> shapes = new ArrayList<>();
+
+        shapes.add(new Circle(5));
+        shapes.add(new Rectangle(4, 6));
+        shapes.add(new Triangle(3, 4, 5));
+
+        for (Shape shape : shapes) {
+            System.out.println("CCE22039- Shape: " + shape.getClass().getSimpleName());
+            System.out.println("CCE22039- Area: " + shape.calculateArea());
+            System.out.println("CCE22039- Perimeter: " + shape.calculatePerimeter());
+            System.out.println("-----------------------");
+        }
+    }
+}
