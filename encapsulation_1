@@ -1,0 +1,61 @@
+/*
+Question:
+Create a class Student that demonstrates encapsulation:
+Private fields: name (String), age (int).
+Public getters and setters for both fields.
+Add validation inside setAge() so that age cannot be negative or greater than 100.
+Task:
+Create a Student object in main(), set its values using setters, and print them using getters.
+Try setting an invalid age and observe how your validation works
+*/
+
+class Student {
+    // private fields (encapsulation)
+    private String name;
+    private int age;
+
+    // getter for name
+    public String getName() {
+        return name;
+    }
+
+    // setter for name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // getter for age
+    public int getAge() {
+        return age;
+    }
+
+    // setter for age with validation
+    public void setAge(int age) {
+        if (age >= 0 && age <= 100) {
+            this.age = age;
+        } else {
+            System.out.println("Invalid age! Age must be between 0 and 100.");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student student = new Student();
+
+        // Setting valid values
+        student.setName("Deshana");
+        student.setAge(21);
+
+        System.out.println("Student Name: " + student.getName());
+        System.out.println("Student Age: " + student.getAge());
+
+        // Trying to set invalid age
+        student.setAge(-5); // invalid
+        System.out.println("After setting invalid age (-5): " + student.getAge());
+
+        // Setting valid age again
+        student.setAge(22); // valid
+        System.out.println("After setting valid age (22): " + student.getAge());
+    }
+}
