@@ -1,0 +1,35 @@
+abstract class Payment {
+    // Abstract method
+    public abstract void processPayment(double amount);
+
+    // Concrete method
+    public void generateReceipt() {
+        System.out.println("Receipt generated.");
+    }
+}
+
+class CreditCardPayment extends Payment {
+    @Override
+    public void processPayment(double amount) {
+        System.out.println("Processing credit card payment of $" + amount);
+        generateReceipt();
+    }
+}
+
+class PayPalPayment extends Payment {
+    @Override
+    public void processPayment(double amount) {
+        System.out.println("Processing PayPal payment of $" + amount);
+        generateReceipt();
+    }
+}
+
+class Main {   // ✅ Always use 'Main' for online compilers
+    public static void main(String[] args) {
+        Payment payment1 = new CreditCardPayment();
+        Payment payment2 = new PayPalPayment();
+
+        payment1.processPayment(22039);
+        payment2.processPayment(89.50);
+    }
+}
